@@ -49,7 +49,7 @@ const Login = () => {
                     onChange={(e ) => setPassword(e.target.value)} 
                     value={password} // Pass the password state as value
                 />
-                <a href="#" className="forgot-password-link">Forgot password?</a>
+                Forgot password?
                 <button type="submit" className="login-button">Log In</button>
             </form>
 
