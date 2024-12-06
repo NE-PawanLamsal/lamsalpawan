@@ -1,0 +1,88 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .name{
+    align-items: center;
+    justify-items: center;
+  }
+  
+  .profile {
+    border-top: 2px solid #007bff;
+    border-bottom: 2px solid #007bff;
+    display: flex;
+/* Align items vertically centered */
+    justify-content: space-between; /* Space between left and right */
+  }
+  
+  .profile-left {
+    display: flex;
+    flex-direction: column; /* Stack image and name vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+  }
+  
+  .profile-left img {
+    width: 150px; /* Set a width for the image */
+    height: 150px; /* Set a height for the image */
+    border-radius: 50%; /* Optional: make the image circular */
+    margin-bottom: 10px; /* Space between image and name */
+    margin-top: 10px; /* Space between image and top */
+  }
+  
+  .profile-right {
+    margin-left: 10px;
+    flex: 1; /* Allow the right side to take the remaining space */
+    margin-top:10px; /* Space between left and right */
+  }
+  
+  h2 {
+    margin-left: 10px;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+  }
+  
+  h4 {
+    border-bottom: 1px solid #a4a7aa;
+    margin: 5px 0;
+  }
+  
+  .work-experience, .education, .skills {
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  
+  .experience ul, .degree ul {
+    list-style-type: circle;
+    padding-left: 20px;
+  }
+  
+  .experience li, .degree li {
+    list-style: circle;
+    padding-left: 0px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  .skills ul {
+    list-style-type: circle;
+    padding-left: 20px;
+  }
+  
+  .skills li {
+    margin-bottom: 5px;
+  }
