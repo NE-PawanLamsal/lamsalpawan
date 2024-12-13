@@ -1,4 +1,5 @@
 /* Global Reset */
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
@@ -9,30 +10,52 @@ body {
   font-family: 'Arial', sans-serif;
   background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
   height: 100vh;
+}
+
+
+/* Ensure root container takes full screen width and height */
+.root-container {
+  display: flex; /* Horizontal layout */
+  flex-direction: row; /* Align children side by side */
+  justify-content: space-between; /* Space between model and form */
+  align-items: center; /* Stretch items to fill the container */
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  gap: 20px; /* Add spacing between sections */
+}
+
+.fbx-model {
+  flex: 1;
+  position: relative;
+  width: 100%;  /* Ensure it takes up full width */
+  height: 100%;  /* Ensure it takes up full height */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Login Container */
+.fbx-model canvas {
+  width: 100% !important; /* Ensure the canvas takes 100% width */
+  height: 100% !important; /* Ensure the canvas takes 100% height */
+  object-fit: contain; /* Prevent distortion, maintain aspect ratio */
+}
+/* Both model and form take equal space */
 .login-container {
+  flex: 1; /* Both sections take equal width */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center items vertically */
+  padding: 20px; /* Add padding */
 }
-
-/* Box for Login Form */
-.login-box {
+/* Ensure login form fits inside the container */
+.login-form {
   background: rgba(255, 255, 255, 0.85);
   padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 420px;
-  text-align: center;
-  backdrop-filter: blur(10px); /* Adds a blur effect */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ensure it takes full width */
 }
+
 
 /* Header Section */
 .login-header {
@@ -107,12 +130,21 @@ body {
 
 /* Responsive Design */
 @media (max-width: 600px) {
+  .fbx-model {
+    display: none; /* Hide the 3D model on small screens */
+  }
+
+  .login-container {
+    max-width: 90%;
+    padding: 20px;
+  }
+
   .login-box {
-      padding: 25px;
-      width: 90%;
+    padding: 25px;
+    width: 90%;
   }
 
   .login-img {
-      width: 100px;
+    width: 100px;
   }
 }

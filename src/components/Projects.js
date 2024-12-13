@@ -12,7 +12,7 @@ const Projects = () => {
             .then((response) => setProjects(response.data))
             .catch((error) => console.error("Error fetching projects:", error));
     }, []);
-
+        console.log(projects[1])
     const handleCardClick = (project) => {
         // Toggle the visibility of the project details when clicked
         if (selectedProject?.id === project.id) {
@@ -41,23 +41,23 @@ const Projects = () => {
                                 />
                             )}
                             <h3>{project.title}</h3>
-                            <p>{new Date(project.date).toLocaleDateString()}</p>
+
+                            <p>{project.date}</p>
                         </div>
                         {selectedProject?.id === project.id && (
                             <div className="project-details">
                                 <p>{project.description}</p>
-                                {project.github_link && (
                                     <a
-                                        href={project.github_link}
+                                        href={project.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="github-link"
                                     >
                                         View on GitHub
                                     </a>
-                                )}
                             </div>
                         )}
+
                     </div>
                 ))}
             </div>

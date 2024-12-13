@@ -27,6 +27,42 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/')
 def index():
     return "Backend is running!"
+
+#Register
+@app.route('/api/signup', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    # Check if username or password is empty
+    if not username or not password:
+        return jsonify({'success': False, 'message': 'Username and password are required'}), 400
+
+    # Hash the password
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    print(f"Registering user: {username}, Hashed Password: {hashed_password}")
+
+    cur = mysql.connection.cursor()
+
+    # Check if username already exists
+    cur.execute("SELECT * FROM users WHERE username=%s", (username,))
+    existing_user = cur.fetchone()
+    if existing_user:
+        cur.close()
+        return jsonify({'success': False, 'message': 'Username already exists'}), 409
+
+    # Insert new user into the database
+    try:
+        cur.execute("INSERT INTO users (username, password) VALUES (%s, %s)", (username, hashed_password))
+        mysql.connection.commit()
+        cur.close()
+        return jsonify({'success': True, 'message': 'User registered successfully'}), 201
+    except Exception as e:
+        cur.close()
+        print(f"Error during registration: {e}")
+        return jsonify({'success': False, 'message': 'Registration failed'}), 500
+
 # Authentication
 @app.route('/api/login', methods=['POST'])
 def login():
@@ -56,7 +92,7 @@ def get_projects():
     cur.execute("SELECT * FROM projects")
     projects = cur.fetchall()
     cur.close()
-    result = [{'id': p[0], 'title': p[1], 'description': p[2], 'image_url': p[3]} for p in projects]
+    result = [{'id': p[0], 'title': p[1], 'description': p[2], 'image_url': p[3], 'date': p[4], 'link':p[5]} for p in projects]
     return jsonify(result), 200
 
 # Fetch Files (Protected)

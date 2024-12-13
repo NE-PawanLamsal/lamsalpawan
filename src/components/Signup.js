@@ -24,7 +24,7 @@ const Signup = () => {
             .then((response) => {
                 if (response.data.success) {
                     localStorage.setItem("token", response.data.token); // Save token for auth
-                    navigate("/dashboard");
+                    navigate("/login");
                 } else {
                     alert("Error during registration!");
                 }
